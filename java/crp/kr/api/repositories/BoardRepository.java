@@ -1,18 +1,20 @@
 package crp.kr.api.repositories;
 
+import crp.kr.api.domains.Board;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  * packageName:crp.kr.api.repositories
- * fileName        :UserRepositoryImpl
+ * fileName        :BoardRepository
  * author           : chohyungook
- * date               :2022-05-03
+ * date               :2022-05-04
  * desc            :
  * ================================
  * DATE              AUTHOR        NOTE
  * ================================
- * 2022-05-03chohyungook최초 생성
+ * 2022-05-04chohyungook최초 생성
  */
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+public interface BoardRepository extends JpaRepository<Board,Long> {
 }
