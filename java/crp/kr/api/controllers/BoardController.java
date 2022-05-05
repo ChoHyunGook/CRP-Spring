@@ -3,6 +3,10 @@ package crp.kr.api.controllers;
 import crp.kr.api.domains.Board;
 import crp.kr.api.services.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,13 +32,35 @@ public class BoardController {
 
     private final BoardService service;
 
-    @PostMapping("/write")
-    public String getWrite(@RequestBody Board write){
-        return service.write(write);
+    public List<Board> findAll() {
+        return null;
     }
 
-    @PostMapping("/list")
-    public String getList(@RequestBody Board list){
-        return service.list(list);
+    public List<Board> findAll(Sort sort) {
+        return null;
+    }
+
+    public Page<Board> findAll(Pageable pageable) {
+        return null;
+    }
+
+    public long count() {
+        return 0;
+    }
+
+    public void delete(Board entity) {
+
+    }
+
+    public <S extends Board> S save(S entity) {
+        return null;
+    }
+
+    public <S extends Board> List<S> saveAllAndFlush(Iterable<S> entities) {
+        return null;
+    }
+
+    public <S extends Board> List<S> findAll(Example<S> example) {
+        return null;
     }
 }
