@@ -14,7 +14,5 @@ import crp.kr.api.domains.Board;
  * 2022-05-04chohyungook최초 생성
  */
 public interface BoardService {
-    String write(Board write);
 
-    String list(Board list);
 }

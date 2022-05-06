@@ -1,18 +1,17 @@
 package crp.kr.api.controllers;
 
 import crp.kr.api.domains.Board;
+import crp.kr.api.domains.User;
 import crp.kr.api.services.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName:crp.kr.api.controllers
@@ -32,35 +31,28 @@ public class BoardController {
 
     private final BoardService service;
 
+    @PostMapping("/findAll")
     public List<Board> findAll() {
-        return null;
+        return service.findAll();
     }
-
+    @PostMapping("/findAll/sort")
     public List<Board> findAll(Sort sort) {
-        return null;
+        return service.findAll(sort);
     }
-
+    @PostMapping("/findAll/pageable")
     public Page<Board> findAll(Pageable pageable) {
-        return null;
+        return service.findAll(pageable);
     }
-
+    @PostMapping("/count")
     public long count() {
-        return 0;
+        return service.count();
     }
-
-    public void delete(Board entity) {
-
-    }
-
-    public <S extends Board> S save(S entity) {
-        return null;
-    }
-
-    public <S extends Board> List<S> saveAllAndFlush(Iterable<S> entities) {
-        return null;
-    }
-
-    public <S extends Board> List<S> findAll(Example<S> example) {
-        return null;
+    @PostMapping("/put")
+    public String put(@RequestBody Board board){return service.put(board);}
+    @PostMapping("/delte")
+    public String delete(@RequestBody Board board) {return service.delete(board);}
+    @PostMapping("/write")
+    public String save(@RequestBody Board board) {
+        return service.save(board);
     }
 }
