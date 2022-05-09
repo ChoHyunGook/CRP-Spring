@@ -1,17 +1,15 @@
-package crp.kr.api.controllers;
+package crp.kr.api.board.controllers;
 
-import crp.kr.api.domains.Board;
-import crp.kr.api.domains.User;
-import crp.kr.api.services.BoardService;
+import crp.kr.api.board.domains.Article;
+import crp.kr.api.board.domains.Board;
+import crp.kr.api.board.services.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * packageName:crp.kr.api.controllers
@@ -31,28 +29,34 @@ public class BoardController {
 
     private final BoardService service;
 
-    @PostMapping("/findAll")
+    @GetMapping("/findAll")
     public List<Board> findAll() {
         return service.findAll();
     }
-    @PostMapping("/findAll/sort")
+
+    @GetMapping("/findAll/sort")
     public List<Board> findAll(Sort sort) {
         return service.findAll(sort);
     }
-    @PostMapping("/findAll/pageable")
+
+    @GetMapping("/findAll/pageable")
     public Page<Board> findAll(Pageable pageable) {
         return service.findAll(pageable);
     }
-    @PostMapping("/count")
+
+    @GetMapping("/count")
     public long count() {
         return service.count();
     }
-    @PostMapping("/put")
-    public String put(@RequestBody Board board){return service.put(board);}
-    @PostMapping("/delte")
-    public String delete(@RequestBody Board board) {return service.delete(board);}
-    @PostMapping("/write")
+
+    @DeleteMapping("/delete")
+    public String delete(@RequestBody Board board) {
+        return service.delete(board);
+    }
+
+    @PostMapping("/join")
     public String save(@RequestBody Board board) {
         return service.save(board);
     }
+
 }

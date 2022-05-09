@@ -1,9 +1,8 @@
-package crp.kr.api.controllers;
+package crp.kr.api.Soccer.controllers;
 
-import crp.kr.api.domains.User;
-import crp.kr.api.services.UserService;
+import crp.kr.api.Soccer.domains.Schedule;
+import crp.kr.api.Soccer.services.SoccerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,28 +12,26 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * packageName:crp.kr.api.controllers
- * fileName        :UserController
+ * packageName:crp.kr.api.Soccer.controllers
+ * fileName        :SoccerController
  * author           : chohyungook
- * date               :2022-05-03
+ * date               :2022-05-09
  * desc            :
  * ================================
  * DATE              AUTHOR        NOTE
  * ================================
- * 2022-05-03chohyungook최초 생성
+ * 2022-05-09chohyungook최초 생성
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
-public class UserController {
-
-    private final UserService service;
-
+@RequestMapping("/soccer")
+public class SoccerController {
+    private final SoccerService service;
 
     @PostMapping("/login")
-    public String login(@RequestBody User user){
+    public String login(@RequestBody Schedule soccer){
 
-        return service.login(user);
+        return service.login(soccer);
     }
 
     @GetMapping("/logout")
@@ -43,19 +40,19 @@ public class UserController {
     }
 
     @GetMapping("/findAll")
-    public List<User> findAll() {
+    public List<Schedule> findAll() {
 
         return service.findAll();
     }
 
     @GetMapping("/findAll/sort")
-    public List<User> findAll(Sort sort) {
+    public List<Schedule> findAll(Sort sort) {
 
         return service.findAll(sort);
     }
 
     @GetMapping("/findAll/pageable")
-    public Page<User> findAll(Pageable pageable) {
+    public Page<Schedule> findAll(Pageable pageable) {
 
         return service.findAll(pageable);
     }
@@ -66,22 +63,22 @@ public class UserController {
     }
 
     @PutMapping("/put")
-    public String put(@RequestBody User user){
-        return service.put(user);
+    public String put(@RequestBody Schedule soccer){
+        return service.put(soccer);
     }
 
     @DeleteMapping("/delete")
-    public String delete(@RequestBody User user) {
-        return service.delete(user);
+    public String delete(@RequestBody Schedule soccer) {
+        return service.delete(soccer);
     }
 
     @PostMapping("/join")
-    public String save(@RequestBody User user) {
-        return service.save(user);
+    public String save(@RequestBody Schedule soccer) {
+        return service.save(soccer);
     }
 
     @GetMapping("/findById/{userid}")
-    public Optional<User> findById(@PathVariable String userid) {
+    public Optional<Schedule> findById(@PathVariable String userid) {
         return service.findById(userid);
     }
 
@@ -89,6 +86,4 @@ public class UserController {
     public boolean existsById(@PathVariable String userid) {
         return service.existById(userid);
     }
-
-
 }
