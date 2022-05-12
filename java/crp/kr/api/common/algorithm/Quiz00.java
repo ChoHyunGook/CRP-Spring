@@ -1,5 +1,8 @@
 package crp.kr.api.common.algorithm;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,6 +17,24 @@ import java.util.Scanner;
  * ================================
  * 2022-05-09chohyungook최초 생성
  */
+@Data
+@AllArgsConstructor
+class Calculator{
+    private int num1;
+    private String opcode;
+    private int num2;
+    @Override public String toString(){
+
+        int res = 0;
+        switch (opcode){
+            case "+": res = num1 + num2; break;
+            case "-": res = num1 - num2; break;
+            case "*": res = num1 * num2; break;
+            case "/": res = num1 / num2; break;
+        }
+        return num1 + " "+opcode+" "+num2 +" = "+res;
+    }
+}
 public class Quiz00 {
     public static void main(String[] args) { // 03소수 quiz03prime()
         Scanner scanner = new Scanner(System.in);
@@ -39,6 +60,9 @@ public class Quiz00 {
         }
     } // main
     static void calc(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("숫자1, 숫자2, 연산자");
+        System.out.println(new Calculator(s.nextInt(), s.next(), s.nextInt()));;
 
     }
 
