@@ -39,4 +39,9 @@ public interface UserService {
     Optional<User> findById(String userid);
 
     boolean existById(String userid);
+
+    List<User> findByUserName(String name);
+
+    // custom
+
 }
