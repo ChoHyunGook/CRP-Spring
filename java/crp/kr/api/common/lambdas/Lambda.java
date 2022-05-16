@@ -1,14 +1,9 @@
-package crp.kr.api.common.lambda;
-
-import static crp.kr.api.common.dataStructure.AppleList.Apple;
-import static crp.kr.api.common.dataStructure.AppleList.Apple.Builder;
+package crp.kr.api.common.lambdas;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * packageName:crp.kr.api.common.lambda

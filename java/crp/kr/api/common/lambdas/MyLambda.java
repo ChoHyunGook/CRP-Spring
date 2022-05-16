@@ -1,4 +1,4 @@
-package crp.kr.api.common.lambda;
+package crp.kr.api.common.lambdas;
 
 /**
  * packageName:crp.kr.api.common.lambda
