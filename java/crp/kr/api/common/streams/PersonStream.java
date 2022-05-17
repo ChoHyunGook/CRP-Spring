@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,22 +32,18 @@ public class PersonStream {
     public static class Person{
         private String name,ssn;
         @Override public String toString(){
+            int a = Integer.parseInt(ssn.substring(ssn.length()-1));
+            int b = Integer.parseInt(new SimpleDateFormat("YY").format(new Date()));
+            int c = Integer.parseInt(ssn.substring(0,2));
             String gender=(ssn.substring(7).equals("1")||ssn.substring(7).equals("3"))?"남자":"여자";
-            return String.format("이름: %s, 성별: %s, 나이: %s",name,gender);
+            int age = a / 2 == 0 ? (100 + b - c) : (b - c) ;
+            return String.format("이름: %s, 성별: %s, 나이: %d",name,gender,age);
         }
     }
 
     // 기능:회원검색
-    interface PersonService{ Person search(List<Person> arr);}
-    static class PersonServiceImpl implements PersonService{
-        @Override
-        public Person search(List<Person> arr) {
-            return arr
-                    .stream()
-                    .filter(e->e.getName().equals("유관순")).
-                    collect(Collectors.toList()).get(0);
-        }
-    }
+    @FunctionalInterface/*람다*/ interface PersonService{ Person search(List<Person>/*임마가 e다*/ arr/*임마가 b다*/);}
+
     @Test
     void personStreamTest(){
         //홍길동,900101-1
@@ -57,7 +55,11 @@ public class PersonStream {
                 Person.builder().name("김유신").ssn("950101-1").build(),
                 Person.builder().name("유관순").ssn("040203-4").build()
         );
-        System.out.println(new PersonServiceImpl().search(arr));;
+        PersonService ps = b -> b
+                .stream()//공중에 띄워서
+                        .filter(e/*임마가 List<Person>*/->e.getName().equals("홍길동"))//얘만
+                                .collect(Collectors.toList()).get(0);//컨택을 하고
+        System.out.println(ps.search(arr));;//남겨서 보여주고! 끝나면 없어짐.
     }
 
 }
