@@ -1,9 +1,11 @@
 package crp.kr.api.board.domains;
 
-import lombok.Data;
+import crp.kr.api.auth.domains.User;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+
 
 /**
  * packageName:crp.kr.api.board.domains
@@ -16,7 +18,10 @@ import javax.persistence.*;
  * ================================
  * 2022-05-09chohyungook최초 생성
  */
-@Data
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Component
 @Entity
 @Table(name="Articles")
@@ -29,4 +34,5 @@ public class Article {
     @Column(nullable = false) private String team;
     @Column(nullable = false) private String progress;
     @Column(nullable = false) private String action;
+
 }

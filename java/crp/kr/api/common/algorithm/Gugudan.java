@@ -20,23 +20,15 @@ import java.util.stream.IntStream;
  * 2022-05-17chohyungook최초 생성
  */
 public class Gugudan {
-    @Builder @Getter @AllArgsConstructor @NoArgsConstructor
-    static class Gugu{
-        private int result;
 
-        @Override
-        public String toString() {
-            return String.format("구구단: %d",result);
-        }
-    }
     @FunctionalInterface private interface GugudanService{
-        Gugu gugu(Gugu g);
+        void gugu();
     }
     @Test
     void GuguTest(){
-        IntStream.rangeClosed(2,9).forEach(i->{
+        IntStream.rangeClosed(2,19).forEach(i->{
             IntStream.rangeClosed(1,9).forEach(j->{
-                System.out.print(i+"*"+j+"="+String.format("%2d",i*j));
+                System.out.print(i + "*" + j + "=" + String.format("%2d",i * j));
                 System.out.print("   ");
             });
             System.out.println();

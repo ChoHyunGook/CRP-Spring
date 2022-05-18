@@ -1,9 +1,13 @@
 package crp.kr.api.auth.domains;
 
-import lombok.Data;
+import com.sun.istack.NotNull;
+import lombok.*;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -17,18 +21,24 @@ import javax.persistence.*;
  * ================================
  * 2022-05-03chohyungook최초 생성
  */
-@Data
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Component
 @Entity
 @Table(name = "users")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(nullable = false) private String userid;
-    @Column(nullable = false) private String password;
-    @Column(nullable = false) private String email;
-    @Column(nullable = false) private String name;
-    private String phone;
-    private String birth;
-    private String address;
+        @Id
+        @Column(name = "user_id")
+        @GeneratedValue private long userId;
+        @Column private @NotNull String username;
+        @Column private @NotNull String password;
+        @Column private @NotNull String name;
+        @Column private @NotNull String email;
+        @Column(name = "reg_date") @NotNull private String regDate;
+        @OneToMany(mappedBy = "user")
+        List<Article> articles = new ArrayList<>();
+
+
 }

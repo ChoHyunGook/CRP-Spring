@@ -41,9 +41,9 @@ public class CheckSameArray {
         boolean result;
         CheckSameService s = e ->{
             Arrays.equals(Arrays.stream(arr1).toArray(),Arrays.stream(arr2).toArray());
-          return CheckSame.builder().result(result).build();
+          return CheckSame.builder().build();
         };
-        CheckSame c = CheckSame.builder().result(result).build();
+        CheckSame c = CheckSame.builder().build();
         System.out.println(s.check(c));
     }
 }
