@@ -1,23 +1,20 @@
-package crp.kr.api.Soccer.repositories;
+package crp.kr.api.soccer.repositories;
 
-import crp.kr.api.Soccer.domains.Schedule;
+import crp.kr.api.soccer.domains.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  * packageName:crp.kr.api.Soccer.repositories
- * fileName        :SoccerRepository
+ * fileName        :PlayerRepository
  * author           : chohyungook
- * date               :2022-05-09
+ * date               :2022-05-19
  * desc            :
  * ================================
  * DATE              AUTHOR        NOTE
  * ================================
- * 2022-05-09chohyungook최초 생성
+ * 2022-05-19chohyungook최초 생성
  */
 @Repository
-public interface SoccerRepository extends JpaRepository<Schedule,Long> {
-    String login(Schedule soccer);
-
-    void put(Schedule soccer);
+public interface PlayerRepository extends JpaRepository<Player,Long> {
 }

@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create #수정할땐 update
+      ddl-auto: create #수정할땐 update 생성할땐 create
     properties:
       hibernate:
         format_sql: true #To beautify or pretty print the SQL

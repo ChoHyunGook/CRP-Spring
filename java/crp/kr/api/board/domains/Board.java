@@ -14,11 +14,13 @@ import org.springframework.stereotype.Component;
  * ================================
  * 2022-05-04chohyungook최초 생성
  */
-@Data
+public class Board {}
+/*@Data
 @Component
-public class Board {
+
     private String passengerId;
     private String name;
     private String teamId;
     private String subject;
-}
+
+*/

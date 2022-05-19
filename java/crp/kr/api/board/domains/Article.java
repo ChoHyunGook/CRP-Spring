@@ -18,14 +18,15 @@ import javax.persistence.*;
  * ================================
  * 2022-05-09chohyungook최초 생성
  */
-@Builder
+public class Article {}
+/*@Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
 @Entity
 @Table(name="Articles")
-public class Article {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false) private String projects;
@@ -35,4 +36,4 @@ public class Article {
     @Column(nullable = false) private String progress;
     @Column(nullable = false) private String action;
 
-}
+*/
