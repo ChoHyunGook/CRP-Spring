@@ -21,7 +21,6 @@ import java.util.Optional;
  * 2022-05-09chohyungook최초 생성
  */
 public interface ArticleService {
-
     List<Article> findAll();
 
     List<Article> findAll(Sort sort);
@@ -29,8 +28,6 @@ public interface ArticleService {
     Page<Article> findAll(Pageable pageable);
 
     long count();
-
-    String put(Article article);
 
     String delete(Article article);
 

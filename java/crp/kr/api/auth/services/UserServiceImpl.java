@@ -23,16 +23,15 @@ import java.util.Optional;
  * ================================
  * 2022-05-03chohyungook최초 생성
  */
-@RequiredArgsConstructor
 @Service
-public class UserServiceImpl implements UserService{
-
-    private final UserRepository repository;
-
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserService {
+    private final UserRepository repository; // service : 자식, repository : 부모
 
     @Override
     public String login(User user) {
-        return repository.login(user);
+//        return repository.login(user);
+        return null;
     }
 
     @Override
@@ -42,7 +41,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> findAll(Sort sort) {
-        return repository.findAll();
+        return repository.findAll(sort);
     }
 
     @Override
@@ -57,7 +56,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String put(User user) {
-        repository.put(user);
+//        repository.put(user);
         return "";
     }
 
@@ -79,16 +78,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean existById(String userid) {
+    public boolean existsById(String userid) {
         return repository.existsById(0L); // userid 타입이 다름
     }
 
     @Override
-    public List<User> findByUserName(String name){
+    public List<User> findByUserName(String name) {
         List<User> ls = repository.findAll();
-        Box<String,User> box = new Box<>();
-        //ls = box.findByUserName(ls,name);
+        Box<String, User> box = new Box<>();
+//        ls = box.findByUserName(ls, name);
+//        ls.stream().filter(...)
         return null;
     }
 
+    public String test() {
+        return "테스트";
+    }
 }

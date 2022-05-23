@@ -22,12 +22,10 @@ import java.util.Optional;
  * ================================
  * 2022-05-09chohyungook최초 생성
  */
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
-
     private final ArticleRepository repository;
-
 
     @Override
     public List<Article> findAll() {
@@ -36,7 +34,7 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public List<Article> findAll(Sort sort) {
-        return repository.findAll();
+        return repository.findAll(sort);
     }
 
     @Override
@@ -50,15 +48,9 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public String put(Article article) {
-        repository.put(article);
-        return "";
-    }
-
-    @Override
     public String delete(Article article) {
         repository.delete(article);
-        return "";
+        return null;
     }
 
     @Override
@@ -66,5 +58,4 @@ public class ArticleServiceImpl implements ArticleService{
         repository.save(article);
         return null;
     }
-
 }

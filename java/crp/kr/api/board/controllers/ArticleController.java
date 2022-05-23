@@ -26,7 +26,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/article")
 public class ArticleController {
-
     private final ArticleService service;
 
     @GetMapping("/findAll")
@@ -54,9 +53,8 @@ public class ArticleController {
         return service.delete(article);
     }
 
-    @PostMapping("/join")
+    @PostMapping("/save")
     public String save(@RequestBody Article article) {
         return service.save(article);
     }
-
 }

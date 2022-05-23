@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName:crp.kr.api.services
@@ -21,12 +22,10 @@ import java.util.List;
  * ================================
  * 2022-05-04chohyungook최초 생성
  */
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
-
     private final BoardRepository repository;
-
 
     @Override
     public List<Board> findAll() {
@@ -35,7 +34,7 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public List<Board> findAll(Sort sort) {
-        return repository.findAll();
+        return repository.findAll(sort);
     }
 
     @Override
@@ -49,20 +48,24 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public String put(Board board) {
-        repository.put(board);
-        return "";
-    }
-
-    @Override
     public String delete(Board board) {
         repository.delete(board);
-        return "";
+        return null;
     }
 
     @Override
     public String save(Board board) {
         repository.save(board);
         return null;
+    }
+
+    @Override
+    public Optional<Board> findById(String id) {
+        return repository.findById(0L);
+    }
+
+    @Override
+    public boolean existsById(String id) {
+        return repository.existsById(0L);
     }
 }

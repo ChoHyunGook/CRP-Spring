@@ -16,6 +16,5 @@ import org.springframework.stereotype.Repository;
  * 2022-05-04chohyungook최초 생성
  */
 @Repository
-public interface BoardRepository extends JpaRepository<Board,Long> {
-    void put(Board board);
+public interface BoardRepository extends JpaRepository<Board,Long>{
 }

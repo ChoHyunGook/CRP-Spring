@@ -19,7 +19,5 @@ import java.util.List;
  * 2022-05-09chohyungook최초 생성
  */
 @Repository
-public interface ArticleRepository extends JpaRepository<Article,Long> {
-    void put(Article article);
-
+public interface ArticleRepository extends JpaRepository<Article, Long> {
 }

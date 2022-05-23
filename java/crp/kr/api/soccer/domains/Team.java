@@ -19,16 +19,16 @@ import java.util.List;
  * 2022-05-09chohyungook최초 생성
  */
 @Builder
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Component
 @Entity
 @Table(name = "teams")
-public class Team{
+public class Team {
     @Id
     @Column(name = "team_no")
-    @GeneratedValue(strategy = GenerationType.IDENTITY) private long teamNo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) private Long teamNo;
     @Column(nullable = false) private String teamId;
     @Column(nullable = false) private String stadiumId;
     private String regionName;

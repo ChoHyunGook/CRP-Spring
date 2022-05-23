@@ -17,16 +17,16 @@ import javax.persistence.*;
  * 2022-05-09chohyungook최초 생성
  */
 @Builder
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Component
 @Entity
 @Table(name = "players")
-public class Player{
+public class Player {
     @Id
     @Column(name = "player_no")
-    @GeneratedValue(strategy = GenerationType.IDENTITY) private long playerNo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) private Long playerNo;
     @Column(nullable = false) private String playerId;
     @Column(nullable = false) private String playerName;
     private String ePlayerName;

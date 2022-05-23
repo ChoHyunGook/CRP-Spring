@@ -15,6 +15,10 @@ import org.springframework.stereotype.Repository;
  * ================================
  * 2022-05-19chohyungook최초 생성
  */
+interface ScheduleCustomRepository {
+
+}
+
 @Repository
-public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
+public interface ScheduleRepository extends JpaRepository<Schedule, Long>, ScheduleCustomRepository {
 }

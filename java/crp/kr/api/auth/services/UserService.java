@@ -19,8 +19,10 @@ import java.util.Optional;
  * ================================
  * 2022-05-03chohyungook최초 생성
  */
+// Repository에 데이터를 넘겨줌 → 미들웨어
+// 자바에서 미들웨어는 인터페이스로 만듦
 public interface UserService {
-    String login(User user);
+    String login(User user); // 추상 메소드만 가짐 → Component 아님
 
     List<User> findAll();
 
@@ -38,10 +40,8 @@ public interface UserService {
 
     Optional<User> findById(String userid);
 
-    boolean existById(String userid);
-
-    List<User> findByUserName(String name);
+    boolean existsById(String userid);
 
     // custom
-
+    List<User> findByUserName(String name);
 }

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName:crp.kr.api.services
@@ -20,7 +21,6 @@ import java.util.List;
  * 2022-05-04chohyungook최초 생성
  */
 public interface BoardService {
-
     List<Board> findAll();
 
     List<Board> findAll(Sort sort);
@@ -29,10 +29,11 @@ public interface BoardService {
 
     long count();
 
-    String put(Board board);
-
     String delete(Board board);
 
     String save(Board board);
 
+    Optional<Board> findById(String id);
+
+    boolean existsById(String id);
 }

@@ -17,16 +17,16 @@ import javax.persistence.*;
  * 2022-05-09chohyungook최초 생성
  */
 @Builder
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Component
 @Entity
 @Table(name = "schedules")
-public class Schedule{
+public class Schedule {
     @Id
     @Column(name = "schedule_no")
-    @GeneratedValue(strategy = GenerationType.IDENTITY) private long scheduleNo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) private Long scheduleNo;
     private String scheDate;
     private String gubun;
     private String hometeamId;

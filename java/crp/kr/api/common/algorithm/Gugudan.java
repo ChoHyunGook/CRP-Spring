@@ -19,7 +19,7 @@ import java.util.stream.IntStream;
  * ================================
  * 2022-05-17chohyungook최초 생성
  */
-public class Gugudan {
+public class Gugudan {//완전탐색
     @Builder @Getter @NoArgsConstructor @AllArgsConstructor
     static class Solution{
         private int num ;

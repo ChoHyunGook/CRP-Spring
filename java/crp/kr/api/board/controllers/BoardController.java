@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName:crp.kr.api.controllers
@@ -26,7 +27,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/board")
 public class BoardController {
-
     private final BoardService service;
 
     @GetMapping("/findAll")
@@ -54,9 +54,19 @@ public class BoardController {
         return service.delete(board);
     }
 
-    @PostMapping("/join")
+    @PostMapping("/save")
     public String save(@RequestBody Board board) {
         return service.save(board);
+    }
+
+    @GetMapping("/findById/{id}")
+    public Optional<Board> findById(@PathVariable String id) {
+        return service.findById(id);
+    }
+
+    @GetMapping("/existsById/{id}")
+    public boolean existsById(@PathVariable String id) {
+        return service.existsById(id);
     }
 
 }
