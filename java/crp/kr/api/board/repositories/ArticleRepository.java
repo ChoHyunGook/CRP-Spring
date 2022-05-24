@@ -1,11 +1,8 @@
 package crp.kr.api.board.repositories;
 
-import crp.kr.api.auth.domains.User;
 import crp.kr.api.board.domains.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * packageName:crp.kr.api.board.repositories

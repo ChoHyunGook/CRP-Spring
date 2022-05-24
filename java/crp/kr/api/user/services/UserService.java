@@ -1,6 +1,6 @@
-package crp.kr.api.auth.services;
+package crp.kr.api.user.services;
 
-import crp.kr.api.auth.domains.User;
+import crp.kr.api.user.domains.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

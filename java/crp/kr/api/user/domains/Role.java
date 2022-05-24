@@ -1,4 +1,4 @@
-package crp.kr.api.auth.domains;
+package crp.kr.api.user.domains;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.Arrays;
  * ================================
  * DATE              AUTHOR        NOTE
  * ================================
- * 2022-05-23chohyungook최초 생성
+ * 2022-05-23 chohyungook 최초생성
  */
 @Getter//읽기전용 (수정불가)
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package crp.kr.api.security.config;
+package crp.kr.api.auth.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
@@ -17,7 +17,7 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
  * 2022-05-23chohyungook최초 생성
  */
 @RequiredArgsConstructor
-public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {//내부시크리티
+public class AuthFilterConfiguration extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {//내부시크리티
 
     @Override
     public void configure(HttpSecurity builder) throws Exception {

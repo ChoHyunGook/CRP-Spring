@@ -1,10 +1,12 @@
-package crp.kr.api.auth.repositories;
+package crp.kr.api.user.repositories;
 
-import crp.kr.api.auth.domains.User;
+import crp.kr.api.user.domains.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * packageName:crp.kr.api.repositories
@@ -32,4 +34,5 @@ interface UserCustomRepository {
 @Repository // generator → 존재할 함수 (function*), 와이파이의 개념
 // JpaRepository : 임베디드 repository
 public interface UserRepository extends JpaRepository<User, Long> { // 인터페이스는 다중 상속 가능 (일반 클래스 불가)
+    Optional<User> findByUsername(String username);
 }

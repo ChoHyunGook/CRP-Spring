@@ -1,8 +1,7 @@
-package crp.kr.api.security.config;
+package crp.kr.api.auth.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,8 +18,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
  * ================================
  * 2022-05-23chohyungook최초 생성
  */
-@Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {//외부 시크리티
+@Configuration//filter기능 => 여기 통해서 restcontroller로 이동하게함
+public class AuthConfiguration extends WebSecurityConfigurerAdapter {//외부 시크리티
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
@@ -29,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {//외부 �
     }
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();//털렸었음
+        http.csrf().disable();//털렸었음 csrf
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//무상태
         http.authorizeRequests()
                 .antMatchers("/users/join").permitAll()//홈만보고 조인은 들어가게해라

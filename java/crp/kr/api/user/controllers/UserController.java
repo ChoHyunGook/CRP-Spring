@@ -1,7 +1,7 @@
-package crp.kr.api.auth.controllers;
+package crp.kr.api.user.controllers;
 
-import crp.kr.api.auth.domains.User;
-import crp.kr.api.auth.services.UserService;
+import crp.kr.api.user.domains.User;
+import crp.kr.api.user.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

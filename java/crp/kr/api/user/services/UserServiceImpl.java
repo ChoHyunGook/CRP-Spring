@@ -1,7 +1,7 @@
-package crp.kr.api.auth.services;
+package crp.kr.api.user.services;
 
-import crp.kr.api.auth.domains.User;
-import crp.kr.api.auth.repositories.UserRepository;
+import crp.kr.api.user.domains.User;
+import crp.kr.api.user.repositories.UserRepository;
 import crp.kr.api.common.dataStructure.Box;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
