@@ -36,7 +36,7 @@ public class AuthToken {
             Map<String,Object> payload = new HashMap<>();
             payload.put("data","kkk");
             Date ext = new Date();
-            ext.setTime(ext.getTime() + 1000 * 6L * 2L);
+            ext.setTime(ext.getTime() + 1000 * 6L * 2L);//10분
             return Jwts.builder()
                     .setHeader(headers)
                     .setClaims(payload)

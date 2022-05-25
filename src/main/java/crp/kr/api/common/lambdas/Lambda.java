@@ -33,7 +33,14 @@ public class Lambda {
         System.out.println(array(8).length);*/
         System.out.println(random(1,6));
     }
-
+    public static long longParse(String s){
+        Function<String, Long> f = Long::parseLong;
+        return f.apply(s);
+    }
+    public static float floatParse(String s){
+        Function<String,Float> f = Float::parseFloat;
+        return f.apply(s);
+    }
     public static int integer(String arg) {
 //        Integer i = Integer.parseInt("900")
         Function<String, Integer> f = Integer::parseInt; // <파라미터타입, 리턴타입> // :: 메소드 참조

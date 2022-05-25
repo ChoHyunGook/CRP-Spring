@@ -1,6 +1,8 @@
 package crp.kr.api.user.services;
 
+import crp.kr.api.auth.domains.Messenger;
 import crp.kr.api.user.domains.User;
+import crp.kr.api.user.domains.UserDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,7 +24,7 @@ import java.util.Optional;
 // Repository에 데이터를 넘겨줌 → 미들웨어
 // 자바에서 미들웨어는 인터페이스로 만듦
 public interface UserService {
-    String login(User user); // 추상 메소드만 가짐 → Component 아님
+    UserDTO login(User user); // 추상 메소드만 가짐 → Component 아님
 
     List<User> findAll();
 
@@ -30,18 +32,20 @@ public interface UserService {
 
     Page<User> findAll(Pageable pageable);
 
-    long count();
+    Messenger count();
 
-    String put(User user);
+    Messenger update(User user);
 
-    String delete(User user);
+    Messenger delete(User user);
 
-    String save(User user);
+    Messenger save(User user);
 
     Optional<User> findById(String userid);
 
-    boolean existsById(String userid);
+    Messenger existsById(String userid);
 
     // custom
     List<User> findByUserName(String name);
+
+    Messenger logout();
 }
