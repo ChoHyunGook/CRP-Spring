@@ -1,11 +1,15 @@
 package crp.kr.api.auth.config;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * packageName:crp.kr.api.config
@@ -20,20 +24,30 @@ import org.springframework.security.config.http.SessionCreationPolicy;
  */
 @Configuration//filter기능 => 여기 통해서 restcontroller로 이동하게함
 public class AuthConfiguration extends WebSecurityConfigurerAdapter {//외부 시크리티
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers(HttpMethod.OPTIONS,"*/**")
-                .antMatchers("/");
+
+        @Bean
+        public PasswordEncoder passwordEncoder(){
+            return new BCryptPasswordEncoder();
+        }
+        @Bean
+        public ModelMapper modelMapper() {
+            return new ModelMapper();
+        }
+        @Override
+        public void configure(WebSecurity web) throws Exception {
+            web.ignoring()
+                    .antMatchers(HttpMethod.OPTIONS,"*/**")
+                    .antMatchers("/");
+        }
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            http.csrf().disable();
+            http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            http.authorizeRequests()
+                    .antMatchers("/users/join").permitAll()
+                    .antMatchers("/users/login").permitAll()
+                    .anyRequest().authenticated();
+            http.exceptionHandling().accessDeniedPage("/users/login");
+        }
     }
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();//털렸었음 csrf
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//무상태
-        http.authorizeRequests()
-                .antMatchers("/users/join").permitAll()//홈만보고 조인은 들어가게해라
-                .antMatchers("/users/login").permitAll()//홈만보고 로그인은 들어가게해라
-                .anyRequest().authenticated();//그외는 로그인하고 보게해라
-        http.exceptionHandling().accessDeniedPage("/users/login");//다른거 누르면 로그인페이지로 보내라
-    }
-}
+

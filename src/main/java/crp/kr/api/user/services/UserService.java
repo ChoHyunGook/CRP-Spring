@@ -24,7 +24,7 @@ import java.util.Optional;
 // Repository에 데이터를 넘겨줌 → 미들웨어
 // 자바에서 미들웨어는 인터페이스로 만듦
 public interface UserService {
-    UserDTO login(User user); // 추상 메소드만 가짐 → Component 아님
+    UserDTO login(UserDTO user); // 추상 메소드만 가짐 → Component 아님
 
     List<User> findAll();
 
@@ -38,7 +38,7 @@ public interface UserService {
 
     Messenger delete(User user);
 
-    Messenger save(User user);
+    Messenger save(UserDTO user);
 
     Optional<User> findById(String userid);
 

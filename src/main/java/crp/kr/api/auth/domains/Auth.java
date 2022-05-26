@@ -36,7 +36,7 @@ public class Auth implements UserDetails {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getAuthority()))
                 .collect(Collectors.toList());
-        return new Auth(user.getUserId(), user.getUserName(), user.getPassword(),
+        return new Auth(user.getUserId(), user.getUsername(), user.getPassword(),
                 user.getName(), user.getEmail(), authorities);
     }
 

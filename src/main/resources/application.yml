@@ -7,12 +7,12 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update #수정할땐 update 생성할땐 create
+      ddl-auto: create #수정할땐 update 생성할땐 create
     properties:
       hibernate:
         format_sql: true #To beautify or pretty print the SQL
         show_sql: true #show sql
-        dialect: org.hibernate.dialect.MariaDBDialect
+
 
 security:
   jwt:

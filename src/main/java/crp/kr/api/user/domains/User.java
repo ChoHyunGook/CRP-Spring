@@ -24,7 +24,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@ToString
+@Setter
 // 컴포넌트는 property와 method의 집합이다.
 // 리액트에서 컴포넌트는 props와 state, 그리고 render()를 가진 순수 함수이다.
 @Entity
@@ -33,7 +34,7 @@ public class User {
         @Id
         @Column(name = "user_id")
         @GeneratedValue private long userId;
-        @Column private @NotNull String userName;
+        @Column private @NotNull String username;
         @Column private @NotNull String password;
         @Column private @NotNull String name;
         @Column private @NotNull String email;

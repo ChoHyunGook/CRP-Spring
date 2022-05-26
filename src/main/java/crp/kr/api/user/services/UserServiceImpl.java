@@ -21,8 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static crp.kr.api.common.lambdas.Lambda.longParse;
-import static crp.kr.api.common.lambdas.Lambda.string;
+import static crp.kr.api.common.lambdas.Lambda.*;
 
 /**
  * packageName:crp.kr.api.services
@@ -38,25 +37,31 @@ import static crp.kr.api.common.lambdas.Lambda.string;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private final UserRepository repository; // service : 자식, repository : 부모
+    private final UserRepository repository;
     private final PasswordEncoder encoder;
     private final AuthProvider provider;
     private final ModelMapper modelMapper;
 
     @Override
-    public UserDTO login(User user) {
-        try {
-            UserDTO userDTO = modelMapper.map(user,UserDTO.class);
-            User findUser = repository.findByUsername(user.getUserName()).orElse(null);
-            String pw = repository.findByUsername(user.getUserName()).get().getPassword();
-            boolean checkPassword = encoder.matches(user.getPassword(),pw);
-            String username = user.getUserName();
-            List<Role> roles = findUser.getRoles();
-            String token = checkPassword ? provider.createToken(username, roles) : "Wrong Password";
-            userDTO.setToken(token);
-            return userDTO;
+    public UserDTO login(UserDTO paramUser) {
+        try{
+            UserDTO returnUser = new UserDTO();
+            String username = paramUser.getUsername();
+            User findUser = repository.findByUsername(username).orElse(null);
+            if(findUser != null){
+                boolean checkPassword = encoder.matches(paramUser.getPassword(), findUser.getPassword());
+                if(checkPassword){
+                    returnUser = modelMapper.map(findUser, UserDTO.class);
+                    String token = provider.createToken(username, returnUser.getRoles());
+                    returnUser.setToken(token);
+                }else{
+                    String token = "FAILURE";
+                    returnUser.setToken(token);
+                }
+            }
+            return returnUser;
         }catch (Exception e){
-            throw new SecurityRuntimeException("유효하지 않는 아이디/비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
+            throw new SecurityRuntimeException("유효하지 않은 아이디/비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -67,7 +72,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll(Sort sort) {
-        return repository.findAll(sort);
+        return repository.findAll();
     }
 
     @Override
@@ -88,20 +93,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public Messenger delete(User user) {
         repository.delete(user);
-        return Messenger.builder().build();
+        return Messenger.builder().message("").build();
     }
 
     @Override
-    public Messenger save(User user) {
+    public Messenger save(UserDTO user) {
+        System.out.println("서비스로 전달된 회원가입 정보 : " + user.toString());
         String result = "";
-        if(repository.findByUsername(user.getUserName()).isEmpty()){
+        if(repository.findByUsername(user.getUsername()).isEmpty()){
             List<Role> list = new ArrayList<>();
             list.add(Role.USER);
-            repository.save(User.builder().password(encoder.encode(user.getPassword()))
+            repository.save(User.builder()
+                    .username(user.getUsername())
+                    .name(user.getName())
+                    .regDate(user.getRegDate())
+                    .email(user.getEmail())
+                    .password(encoder.encode(user.getPassword()))
                     .roles(list).build());
-            result= "SUCCESS";
-        }else {
-            result ="FAIL";
+            result = "SUCCESS";
+        }else{
+            result = "FAIL";
         }
         return Messenger.builder().message(result).build();
     }
@@ -122,17 +133,13 @@ public class UserServiceImpl implements UserService {
     public List<User> findByUserName(String name) {
         List<User> ls = repository.findAll();
         Box<String, User> box = new Box<>();
-//        ls = box.findByUserName(ls, name);
-//        ls.stream().filter(...)
+        // ls = box.findByUserName(ls, name);
+        // ls.stream().filter(...)
         return null;
     }
 
     @Override
     public Messenger logout() {
         return Messenger.builder().build();
-    }
-
-    public String test() {
-        return "테스트";
     }
 }

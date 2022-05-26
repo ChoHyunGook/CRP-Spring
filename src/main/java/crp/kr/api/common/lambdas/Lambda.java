@@ -1,9 +1,11 @@
 package crp.kr.api.common.lambdas;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * packageName:crp.kr.api.common.lambda
@@ -76,5 +78,9 @@ public class Lambda {
     public static File file(String s){
         Function<String,File> a = File::new;
         return a.apply(s);
+    }
+    public static String date(){
+        Supplier<String> f = () -> string(LocalDate.now());
+        return f.get();
     }
 }
